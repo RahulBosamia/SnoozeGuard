@@ -38,8 +38,7 @@ def detect(save_img=False):
         load_darknet_weights(model, weights)
 
     # Second-stage classifier
-    classify = False
-    if classify:
+    if classify := False:
         modelc = torch_utils.load_classifier(name='resnet101', n=2)  # initialize
         modelc.load_state_dict(torch.load('weights/resnet101.pt', map_location=device)['model'])  # load weights
         modelc.to(device).eval()
@@ -66,8 +65,8 @@ def detect(save_img=False):
         return
 
     # Half precision
-    half = half and device.type != 'cpu'  # half precision only supported on CUDA
-    if half:
+# half precision only supported on CUDA
+    if half := half and device.type != 'cpu':
         model.half()
 
     # Set Dataloader

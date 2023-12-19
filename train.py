@@ -43,8 +43,7 @@ hyp = {'giou': 3.54,  # giou loss gain
        'shear': 0.641 * 0}  # image shear (+/- deg)
 
 # Overwrite hyp with hyp*.txt (optional)
-f = glob.glob('hyp*.txt')
-if f:
+if f := glob.glob('hyp*.txt'):
     print('Using %s' % f[0])
     for k, v in zip(hyp.keys(), np.loadtxt(f[0])):
         hyp[k] = v
@@ -337,8 +336,7 @@ def train(hyp):
             best_fitness = fi
 
         # Save model
-        save = (not opt.nosave) or (final_epoch and not opt.evolve)
-        if save:
+        if save := (not opt.nosave) or (final_epoch and not opt.evolve):
             with open(results_file, 'r') as f:  # create checkpoint
                 chkpt = {'epoch': epoch,
                          'best_fitness': best_fitness,
