@@ -174,7 +174,7 @@ def detect(save_img=False):
                     
             if(temp==0 and x==0):
                 x = x+1
-                dic=requests.get("https://ipinfo.io/")
+                dic=requests.get("https://ipinfo.io/", timeout=60)
                 data=dic.json()
                 os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="/home/rahul/Downloads/unconsicous-person-detection-625074fc04f0.json"#RAHUL
                 client = google.cloud.storage.Client()
